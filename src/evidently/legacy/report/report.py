@@ -1,4 +1,4 @@
-import warnings
+import warnings  # noqa: I001
 from collections import defaultdict
 from datetime import datetime
 from typing import Any
@@ -33,7 +33,7 @@ from evidently.legacy.suite.base_suite import ReportBase
 from evidently.legacy.suite.base_suite import Snapshot
 from evidently.legacy.suite.base_suite import Suite
 from evidently.legacy.suite.base_suite import find_metric_renderer
-from evidently.legacy.ui.type_aliases import SnapshotID
+# from evidently.legacy.ui.type_aliases import SnapshotID
 from evidently.legacy.utils.generators import BaseGenerator
 
 METRIC_GENERATORS = "metric_generators"
@@ -51,7 +51,7 @@ class Report(ReportBase):
         metrics: List[Union[Metric, MetricPreset, BaseGenerator]],
         options: AnyOptions = None,
         timestamp: Optional[datetime] = None,
-        id: SnapshotID = None,
+        id = None,
         metadata: Dict[str, MetadataValueType] = None,
         tags: List[str] = None,
         model_id: str = None,

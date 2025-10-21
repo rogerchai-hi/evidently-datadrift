@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime  # noqa: I001
 from typing import Dict
 from typing import List
 from typing import Optional

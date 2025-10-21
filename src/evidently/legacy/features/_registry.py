@@ -17,7 +17,7 @@ register_type_alias(GeneratedFeatures, "evidently.legacy.features.is_valid_pytho
 register_type_alias(GeneratedFeatures, "evidently.legacy.features.is_valid_sql_feature.IsValidSQL", "evidently:feature:IsValidSQL")
 register_type_alias(GeneratedFeatures, "evidently.legacy.features.json_match_feature.JSONMatch", "evidently:feature:JSONMatch")
 register_type_alias(GeneratedFeatures, "evidently.legacy.features.json_schema_match_feature.JSONSchemaMatch", "evidently:feature:JSONSchemaMatch")
-register_type_alias(GeneratedFeatures, "evidently.legacy.features.llm_judge.LLMJudge", "evidently:feature:LLMJudge")
+# register_type_alias(GeneratedFeatures, "evidently.legacy.features.llm_judge.LLMJudge", "evidently:feature:LLMJudge")
 register_type_alias(GeneratedFeatures, "evidently.legacy.features.non_letter_character_percentage_feature.NonLetterCharacterPercentage", "evidently:feature:NonLetterCharacterPercentage")
 register_type_alias(GeneratedFeatures, "evidently.legacy.features.openai_feature.OpenAIFeature", "evidently:feature:OpenAIFeature")
 register_type_alias(GeneratedFeatures, "evidently.legacy.features.regexp_feature.RegExp", "evidently:feature:RegExp")

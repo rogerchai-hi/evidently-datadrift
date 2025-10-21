@@ -23,6 +23,7 @@ from evidently.core.metric_types import metric_tests_widget
 from evidently.core.metric_types import render_widgets
 from evidently.core.serialization import ReportModel
 from evidently.core.serialization import SnapshotModel
+from evidently.errors import NotSupportedError
 from evidently.legacy.base_metric import InputData
 from evidently.legacy.base_metric import Metric as LegacyMetric
 from evidently.legacy.base_metric import MetricResult as LegacyMetricResult
@@ -388,7 +389,7 @@ class Snapshot:
             ]
 
     def get_html_str(self, as_iframe: bool):
-        from evidently.legacy.renderers.html_widgets import group_widget
+        from evidently.legacy.renderers.html_widgets import group_widget  # noqa: PLC0415
 
         widgets_to_render: List[BaseWidgetInfo] = [group_widget(title="", widgets=self._widgets)] + self._tests_widgets
 
@@ -434,7 +435,8 @@ class Snapshot:
                 json.dump(self.dict(), out_file, cls=NumpyEncoder)
 
     def _to_v1(self):
-        from evidently.ui.backport import snapshot_v2_to_v1
+        raise NotSupportedError("only supported in the main version of Evidently")
+        from evidently.ui.backport import snapshot_v2_to_v1  # noqa
 
         return snapshot_v2_to_v1(self)
 

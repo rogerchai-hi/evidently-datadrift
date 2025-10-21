@@ -1,4 +1,4 @@
-import abc
+import abc  # noqa: I001
 import copy
 import dataclasses
 import json
@@ -40,10 +40,10 @@ from evidently.legacy.tests.base_test import Test
 from evidently.legacy.tests.base_test import TestParameters
 from evidently.legacy.tests.base_test import TestResult
 from evidently.legacy.tests.base_test import TestStatus
-from evidently.legacy.ui.datasets import inject_feature_types_in_column_mapping
-from evidently.legacy.ui.type_aliases import ComputationConfigID
-from evidently.legacy.ui.type_aliases import DatasetID
-from evidently.legacy.ui.type_aliases import SnapshotID
+# from evidently.legacy.ui.datasets import inject_feature_types_in_column_mapping
+# from evidently.legacy.ui.type_aliases import ComputationConfigID
+# from evidently.legacy.ui.type_aliases import DatasetID
+# from evidently.legacy.ui.type_aliases import SnapshotID
 from evidently.legacy.utils import NumpyEncoder
 from evidently.legacy.utils import data_preprocessing
 from evidently.legacy.utils.dashboard import SaveMode
@@ -475,174 +475,174 @@ class Suite:
 MetadataValueType = Union[str, Dict[str, str], List[str]]
 
 
-class DatasetLinks(BaseModel):
-    reference: Optional[DatasetID] = None
-    current: Optional[DatasetID] = None
-    additional: Dict[str, DatasetID] = {}
+# class DatasetLinks(BaseModel):
+#     reference: Optional[DatasetID] = None
+#     current: Optional[DatasetID] = None
+#     additional: Dict[str, DatasetID] = {}
 
-    def __iter__(self) -> Generator[Tuple[str, DatasetID], None, None]:
-        if self.reference is not None:
-            yield "reference", self.reference
-        if self.current is not None:
-            yield "current", self.current
-        yield from self.additional.items()
-
-
-class DatasetInputOutputLinks(BaseModel):
-    input: DatasetLinks = DatasetLinks()
-    output: DatasetLinks = DatasetLinks()
-
-    def __iter__(self) -> Generator[Tuple[str, Tuple[str, DatasetID]], None, None]:
-        yield from (("input", (subtype, dataset_id)) for subtype, dataset_id in self.input)
-        yield from (("output", (subtype, dataset_id)) for subtype, dataset_id in self.output)
+#     def __iter__(self) -> Generator[Tuple[str, DatasetID], None, None]:
+#         if self.reference is not None:
+#             yield "reference", self.reference
+#         if self.current is not None:
+#             yield "current", self.current
+#         yield from self.additional.items()
 
 
-class SnapshotLinks(BaseModel):
-    datasets: DatasetInputOutputLinks = DatasetInputOutputLinks()
-    computation_config_id: Optional[ComputationConfigID] = None
-    task_id: Optional[str] = None
+# class DatasetInputOutputLinks(BaseModel):
+#     input: DatasetLinks = DatasetLinks()
+#     output: DatasetLinks = DatasetLinks()
+
+#     def __iter__(self) -> Generator[Tuple[str, Tuple[str, DatasetID]], None, None]:
+#         yield from (("input", (subtype, dataset_id)) for subtype, dataset_id in self.input)
+#         yield from (("output", (subtype, dataset_id)) for subtype, dataset_id in self.output)
 
 
-class Snapshot(BaseModel):
-    id: SnapshotID
-    name: Optional[str] = None
-    timestamp: datetime
-    metadata: Dict[str, MetadataValueType]
-    tags: List[str]
-    suite: ContextPayload
-    metrics_ids: List[int] = []
-    test_ids: List[int] = []
-    options: Options
-    links: SnapshotLinks = SnapshotLinks()
-
-    def save(self, filename):
-        with open(filename, "w") as f:
-            if USE_UJSON:
-                ujson.dump(self.dict(), f, indent=2, default=NumpyEncoder().default)
-            else:
-                json.dump(self.dict(), f, indent=2, cls=NumpyEncoder)
-
-    @classmethod
-    def load(cls, filename):
-        with open(filename, "r") as f:
-            return parse_obj_as(Snapshot, json.load(f))
-
-    @property
-    def is_report(self):
-        return len(self.metrics_ids) > 0
-
-    @property
-    def is_new_report(self):
-        return self.metadata.get("version", "1").startswith("2")
-
-    def as_report(self):
-        from evidently.legacy.report import Report
-
-        return Report._parse_snapshot(self)
-
-    def as_test_suite(self):
-        from evidently.legacy.test_suite import TestSuite
-
-        return TestSuite._parse_snapshot(self)
-
-    def first_level_metrics(self) -> List[Metric]:
-        return [self.suite.metrics[i] for i in self.metrics_ids]
-
-    def first_level_tests(self) -> List[Test]:
-        return [self.suite.tests[i] for i in self.test_ids]
+# class SnapshotLinks(BaseModel):
+#     datasets: DatasetInputOutputLinks = DatasetInputOutputLinks()
+#     computation_config_id: Optional[ComputationConfigID] = None
+#     task_id: Optional[str] = None
 
 
-T = TypeVar("T", bound="ReportBase")
+# class Snapshot(BaseModel):
+#     id: SnapshotID
+#     name: Optional[str] = None
+#     timestamp: datetime
+#     metadata: Dict[str, MetadataValueType]
+#     tags: List[str]
+#     suite: ContextPayload
+#     metrics_ids: List[int] = []
+#     test_ids: List[int] = []
+#     options: Options
+#     links: SnapshotLinks = SnapshotLinks()
+
+#     def save(self, filename):
+#         with open(filename, "w") as f:
+#             if USE_UJSON:
+#                 ujson.dump(self.dict(), f, indent=2, default=NumpyEncoder().default)
+#             else:
+#                 json.dump(self.dict(), f, indent=2, cls=NumpyEncoder)
+
+#     @classmethod
+#     def load(cls, filename):
+#         with open(filename, "r") as f:
+#             return parse_obj_as(Snapshot, json.load(f))
+
+#     @property
+#     def is_report(self):
+#         return len(self.metrics_ids) > 0
+
+#     @property
+#     def is_new_report(self):
+#         return self.metadata.get("version", "1").startswith("2")
+
+#     def as_report(self):
+#         from evidently.legacy.report import Report
+
+#         return Report._parse_snapshot(self)
+
+#     def as_test_suite(self):
+#         from evidently.legacy.test_suite import TestSuite
+
+#         return TestSuite._parse_snapshot(self)
+
+#     def first_level_metrics(self) -> List[Metric]:
+#         return [self.suite.metrics[i] for i in self.metrics_ids]
+
+#     def first_level_tests(self) -> List[Test]:
+#         return [self.suite.tests[i] for i in self.test_ids]
 
 
-class Runnable(abc.ABC):
-    @abc.abstractmethod
-    def run(
-        self,
-        *,
-        reference_data,
-        current_data,
-        column_mapping: Optional[ColumnMapping] = None,
-        engine: Optional[Type[Engine]] = None,
-        additional_data: Dict[str, Any] = None,
-        timestamp: Optional[datetime] = None,
-    ) -> None:
-        raise NotImplementedError
+# T = TypeVar("T", bound="ReportBase")
 
 
-class ReportBase(Display, Runnable):
-    _inner_suite: Suite
-    # collection of all possible common options
-    options: Options
-    id: SnapshotID
-    name: Optional[str] = None
-    timestamp: datetime
-    metadata: Dict[str, MetadataValueType] = {}
-    tags: List[str] = []
+# class Runnable(abc.ABC):
+#     @abc.abstractmethod
+#     def run(
+#         self,
+#         *,
+#         reference_data,
+#         current_data,
+#         column_mapping: Optional[ColumnMapping] = None,
+#         engine: Optional[Type[Engine]] = None,
+#         additional_data: Dict[str, Any] = None,
+#         timestamp: Optional[datetime] = None,
+#     ) -> None:
+#         raise NotImplementedError
 
-    def __init__(self, options: AnyOptions = None, name: str = None):
-        self.name = name
-        self.options = Options.from_any_options(options)
 
-    def _get_json_content(
-        self,
-        include_render: bool = False,
-        include: Dict[str, IncludeOptions] = None,
-        exclude: Dict[str, IncludeOptions] = None,
-        **kwargs,
-    ) -> dict:
-        res = super()._get_json_content(include_render, include, exclude, **kwargs)
-        res["timestamp"] = str(self.timestamp)
-        return res
+# class ReportBase(Display, Runnable):
+#     _inner_suite: Suite
+#     # collection of all possible common options
+#     options: Options
+#     id: SnapshotID
+#     name: Optional[str] = None
+#     timestamp: datetime
+#     metadata: Dict[str, MetadataValueType] = {}
+#     tags: List[str] = []
 
-    def _get_snapshot(self) -> Snapshot:
-        ctx = self._inner_suite.context
-        suite = ContextPayload.from_context(ctx)
-        return Snapshot(
-            id=self.id,
-            name=self.name,
-            suite=suite,
-            timestamp=self.timestamp,
-            metadata=self.metadata,
-            tags=self.tags,
-            options=self.options,
-        )
+#     def __init__(self, options: AnyOptions = None, name: str = None):
+#         self.name = name
+#         self.options = Options.from_any_options(options)
 
-    @classmethod
-    @abc.abstractmethod
-    def _parse_snapshot(cls: Type[T], payload: Snapshot) -> T:
-        raise NotImplementedError
+#     def _get_json_content(
+#         self,
+#         include_render: bool = False,
+#         include: Dict[str, IncludeOptions] = None,
+#         exclude: Dict[str, IncludeOptions] = None,
+#         **kwargs,
+#     ) -> dict:
+#         res = super()._get_json_content(include_render, include, exclude, **kwargs)
+#         res["timestamp"] = str(self.timestamp)
+#         return res
 
-    def save(self, filename) -> None:
-        """Save state to file (experimental)"""
-        self._get_snapshot().save(filename)
+#     def _get_snapshot(self) -> Snapshot:
+#         ctx = self._inner_suite.context
+#         suite = ContextPayload.from_context(ctx)
+#         return Snapshot(
+#             id=self.id,
+#             name=self.name,
+#             suite=suite,
+#             timestamp=self.timestamp,
+#             metadata=self.metadata,
+#             tags=self.tags,
+#             options=self.options,
+#         )
 
-    @classmethod
-    def load(cls: Type[T], filename) -> T:
-        """Load state from file (experimental)"""
-        return cls._parse_snapshot(Snapshot.load(filename))
+#     @classmethod
+#     @abc.abstractmethod
+#     def _parse_snapshot(cls: Type[T], payload: Snapshot) -> T:
+#         raise NotImplementedError
 
-    def to_snapshot(self):
-        try:
-            self._inner_suite.raise_for_error()
-        except Exception as e:
-            raise ValueError("Cannot create snapshot because of calculation error") from e
-        return self._get_snapshot()
+#     def save(self, filename) -> None:
+#         """Save state to file (experimental)"""
+#         self._get_snapshot().save(filename)
 
-    def datasets(self) -> EngineDatasets[Any]:
-        return self._inner_suite.context.get_datasets()
+#     @classmethod
+#     def load(cls: Type[T], filename) -> T:
+#         """Load state from file (experimental)"""
+#         return cls._parse_snapshot(Snapshot.load(filename))
 
-    def get_column_mapping(self) -> ColumnMapping:
-        if (
-            self._inner_suite.context.state not in [States.Calculated, States.Tested]
-            or not self._inner_suite.context.data_definition
-        ):
-            raise ValueError("Cannot get column mapping because report did not run")
-        data_definition = self._inner_suite.context.data_definition
-        column_mapping = data_preprocessing.create_column_mapping(data_definition)
-        features_metadata = self._inner_suite.context.run_metadata.descriptors
-        column_mapping_with_descriptor = inject_feature_types_in_column_mapping(column_mapping, features_metadata)
-        return column_mapping_with_descriptor
+#     def to_snapshot(self):
+#         try:
+#             self._inner_suite.raise_for_error()
+#         except Exception as e:
+#             raise ValueError("Cannot create snapshot because of calculation error") from e
+#         return self._get_snapshot()
 
-    def has_descriptors(self) -> bool:
-        return bool(self._inner_suite.context.run_metadata.descriptors)
+#     def datasets(self) -> EngineDatasets[Any]:
+#         return self._inner_suite.context.get_datasets()
+
+#     def get_column_mapping(self) -> ColumnMapping:
+#         if (
+#             self._inner_suite.context.state not in [States.Calculated, States.Tested]
+#             or not self._inner_suite.context.data_definition
+#         ):
+#             raise ValueError("Cannot get column mapping because report did not run")
+#         data_definition = self._inner_suite.context.data_definition
+#         column_mapping = data_preprocessing.create_column_mapping(data_definition)
+#         features_metadata = self._inner_suite.context.run_metadata.descriptors
+#         column_mapping_with_descriptor = inject_feature_types_in_column_mapping(column_mapping, features_metadata)
+#         return column_mapping_with_descriptor
+
+#     def has_descriptors(self) -> bool:
+#         return bool(self._inner_suite.context.run_metadata.descriptors)

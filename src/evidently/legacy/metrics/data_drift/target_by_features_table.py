@@ -1,4 +1,4 @@
-import json
+import json  # noqa: I001
 from typing import Dict
 from typing import List
 from typing import Optional
@@ -12,11 +12,12 @@ from pandas.api.types import is_integer_dtype
 from pandas.api.types import is_string_dtype
 from plotly.subplots import make_subplots
 
+from evidently.errors import NotSupportedError
 from evidently.legacy.base_metric import InputData
 from evidently.legacy.base_metric import Metric
 from evidently.legacy.base_metric import MetricResult
 from evidently.legacy.base_metric import UsesRawDataMixin
-from evidently.legacy.calculations.classification_performance import get_prediction_data
+# from evidently.legacy.calculations.classification_performance import get_prediction_data
 from evidently.legacy.core import ColumnType
 from evidently.legacy.core import IncludeTags
 from evidently.legacy.features.non_letter_character_percentage_feature import NonLetterCharacterPercentage
@@ -118,8 +119,9 @@ class TargetByFeaturesTable(UsesRawDataMixin, Metric[TargetByFeaturesTableResult
         curr_predictions = None
         ref_predictions = None
         if prediction_name is not None:
-            curr_predictions = get_prediction_data(data.current_data, dataset_columns, data.column_mapping.pos_label)
-            ref_predictions = get_prediction_data(data.reference_data, dataset_columns, data.column_mapping.pos_label)
+            raise NotSupportedError("only supported in the main version of Evidently")
+            # curr_predictions = get_prediction_data(data.current_data, dataset_columns, data.column_mapping.pos_label)
+            # ref_predictions = get_prediction_data(data.reference_data, dataset_columns, data.column_mapping.pos_label)
 
         if self.columns is None:
             columns = (

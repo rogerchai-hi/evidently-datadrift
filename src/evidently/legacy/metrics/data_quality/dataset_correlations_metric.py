@@ -1,4 +1,4 @@
-import copy
+import copy  # noqa: I001
 from typing import Dict
 from typing import List
 from typing import Optional
@@ -7,10 +7,11 @@ from typing import Union
 import numpy as np
 import pandas as pd
 
+from evidently.errors import NotSupportedError
 from evidently.legacy.base_metric import InputData
 from evidently.legacy.base_metric import Metric
 from evidently.legacy.base_metric import MetricResult
-from evidently.legacy.calculations.classification_performance import get_prediction_data
+# from evidently.legacy.calculations.classification_performance import get_prediction_data
 from evidently.legacy.calculations.data_quality import calculate_correlations
 from evidently.legacy.core import ColumnType
 from evidently.legacy.core import IncludeTags
@@ -251,17 +252,18 @@ class DatasetCorrelationsMetric(Metric[DatasetCorrelationsMetricResult]):
 
         prediction_data = data_definition.get_prediction_columns()
         if prediction_data is not None and prediction_data.predicted_values is None:
-            prediction_labels_name = "prediction_labels"
-            prediction_curr = get_prediction_data(curr_df, columns, data.column_mapping.pos_label)
-            curr_df[prediction_labels_name] = prediction_curr.predictions
-            if ref_df is not None:
-                prediction_ref = get_prediction_data(ref_df, columns, data.column_mapping.pos_label)
-                ref_df[prediction_labels_name] = prediction_ref.predictions
-            data_definition.prediction_columns = PredictionColumns(
-                prediction_probas=prediction_data.prediction_probas,
-                predicted_values=ColumnDefinition(prediction_labels_name, target_type),
-            )
-            data_definition.columns[prediction_labels_name] = ColumnDefinition(prediction_labels_name, target_type)
+            raise NotSupportedError("only supported in the main version of Evidently")
+            # prediction_labels_name = "prediction_labels"
+            # prediction_curr = get_prediction_data(curr_df, columns, data.column_mapping.pos_label)
+            # curr_df[prediction_labels_name] = prediction_curr.predictions
+            # if ref_df is not None:
+            #     prediction_ref = get_prediction_data(ref_df, columns, data.column_mapping.pos_label)
+            #     ref_df[prediction_labels_name] = prediction_ref.predictions
+            # data_definition.prediction_columns = PredictionColumns(
+            #     prediction_probas=prediction_data.prediction_probas,
+            #     predicted_values=ColumnDefinition(prediction_labels_name, target_type),
+            # )
+            # data_definition.columns[prediction_labels_name] = ColumnDefinition(prediction_labels_name, target_type)
 
         # process text columns
         text_columns = []

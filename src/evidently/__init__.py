@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
-from evidently.core.compare import compare
-from evidently.core.datasets import BinaryClassification
+from evidently.core.compare import compare  # noqa: I001
+# from evidently.core.datasets import BinaryClassification
 from evidently.core.datasets import DataDefinition
 from evidently.core.datasets import Dataset
-from evidently.core.datasets import LLMClassification
-from evidently.core.datasets import MulticlassClassification
-from evidently.core.datasets import Recsys
-from evidently.core.datasets import Regression
+# from evidently.core.datasets import LLMClassification
+# from evidently.core.datasets import MulticlassClassification
+# from evidently.core.datasets import Recsys
+# from evidently.core.datasets import Regression
 from evidently.core.report import Report
 from evidently.core.report import Run
 from evidently.legacy.core import ColumnType
@@ -26,11 +26,11 @@ __all__ = [
     "Run",
     "Dataset",
     "DataDefinition",
-    "BinaryClassification",
-    "MulticlassClassification",
-    "Regression",
-    "Recsys",
-    "LLMClassification",
+    # "BinaryClassification",
+    # "MulticlassClassification",
+    # "Regression",
+    # "Recsys",
+    # "LLMClassification",
     "compare",
     "ColumnType",  # legacy support
 ]

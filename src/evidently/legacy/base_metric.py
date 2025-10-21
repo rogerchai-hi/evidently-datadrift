@@ -40,7 +40,7 @@ from evidently.pydantic_utils import get_value_fingerprint
 
 if TYPE_CHECKING:
     from evidently.legacy.features.generated_features import GeneratedFeatures
-    from evidently.legacy.suite.base_suite import Context
+    # from evidently.legacy.suite.base_suite import Context
 
 
 class WithFieldsPathMetaclass(ModelMetaclass):
@@ -242,7 +242,7 @@ class Metric(WithTestAndMetricDependencies, Generic[TResult], metaclass=WithResu
     class Config:
         is_base_type = True
 
-    _context: Optional["Context"] = None
+    _context = None
 
     options: Optional[Options] = Field(default=None)
 

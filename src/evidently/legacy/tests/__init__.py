@@ -3,20 +3,20 @@ Tests grouped into modules.
 For detailed information see module documentation.
 """
 
-from .classification_performance_tests import TestAccuracyScore
-from .classification_performance_tests import TestF1ByClass
-from .classification_performance_tests import TestF1Score
-from .classification_performance_tests import TestFNR
-from .classification_performance_tests import TestFPR
-from .classification_performance_tests import TestLogLoss
-from .classification_performance_tests import TestPrecisionByClass
-from .classification_performance_tests import TestPrecisionScore
-from .classification_performance_tests import TestRecallByClass
-from .classification_performance_tests import TestRecallScore
-from .classification_performance_tests import TestRocAuc
-from .classification_performance_tests import TestTNR
-from .classification_performance_tests import TestTPR
-from .data_drift_tests import TestAllFeaturesValueDrift
+# from .classification_performance_tests import TestAccuracyScore
+# from .classification_performance_tests import TestF1ByClass
+# from .classification_performance_tests import TestF1Score
+# from .classification_performance_tests import TestFNR
+# from .classification_performance_tests import TestFPR
+# from .classification_performance_tests import TestLogLoss
+# from .classification_performance_tests import TestPrecisionByClass
+# from .classification_performance_tests import TestPrecisionScore
+# from .classification_performance_tests import TestRecallByClass
+# from .classification_performance_tests import TestRecallScore
+# from .classification_performance_tests import TestRocAuc
+# from .classification_performance_tests import TestTNR
+# from .classification_performance_tests import TestTPR
+from .data_drift_tests import TestAllFeaturesValueDrift  # noqa: I001
 from .data_drift_tests import TestColumnDrift
 from .data_drift_tests import TestCustomFeaturesValueDrift
 from .data_drift_tests import TestEmbeddingsDrift
@@ -73,43 +73,43 @@ from .data_quality_tests import TestTargetPredictionCorrelation
 from .data_quality_tests import TestUniqueValuesShare
 from .data_quality_tests import TestValueList
 from .data_quality_tests import TestValueRange
-from .recsys_tests import TestARP
-from .recsys_tests import TestCoverage
-from .recsys_tests import TestDiversity
-from .recsys_tests import TestFBetaTopK
-from .recsys_tests import TestGiniIndex
-from .recsys_tests import TestHitRateK
-from .recsys_tests import TestMAPK
-from .recsys_tests import TestMARK
-from .recsys_tests import TestMRRK
-from .recsys_tests import TestNDCGK
-from .recsys_tests import TestNovelty
-from .recsys_tests import TestPersonalization
-from .recsys_tests import TestPrecisionTopK
-from .recsys_tests import TestRecallTopK
-from .recsys_tests import TestScoreEntropy
-from .recsys_tests import TestSerendipity
-from .regression_performance_tests import TestValueAbsMaxError
-from .regression_performance_tests import TestValueMAE
-from .regression_performance_tests import TestValueMAPE
-from .regression_performance_tests import TestValueMeanError
-from .regression_performance_tests import TestValueR2Score
-from .regression_performance_tests import TestValueRMSE
+# from .recsys_tests import TestARP
+# from .recsys_tests import TestCoverage
+# from .recsys_tests import TestDiversity
+# from .recsys_tests import TestFBetaTopK
+# from .recsys_tests import TestGiniIndex
+# from .recsys_tests import TestHitRateK
+# from .recsys_tests import TestMAPK
+# from .recsys_tests import TestMARK
+# from .recsys_tests import TestMRRK
+# from .recsys_tests import TestNDCGK
+# from .recsys_tests import TestNovelty
+# from .recsys_tests import TestPersonalization
+# from .recsys_tests import TestPrecisionTopK
+# from .recsys_tests import TestRecallTopK
+# from .recsys_tests import TestScoreEntropy
+# from .recsys_tests import TestSerendipity
+# from .regression_performance_tests import TestValueAbsMaxError
+# from .regression_performance_tests import TestValueMAE
+# from .regression_performance_tests import TestValueMAPE
+# from .regression_performance_tests import TestValueMeanError
+# from .regression_performance_tests import TestValueR2Score
+# from .regression_performance_tests import TestValueRMSE
 
 __all__ = [
-    "TestAccuracyScore",
-    "TestF1ByClass",
-    "TestF1Score",
-    "TestFNR",
-    "TestFPR",
-    "TestLogLoss",
-    "TestPrecisionByClass",
-    "TestPrecisionScore",
-    "TestRecallByClass",
-    "TestRecallScore",
-    "TestRocAuc",
-    "TestTNR",
-    "TestTPR",
+    # "TestAccuracyScore",
+    # "TestF1ByClass",
+    # "TestF1Score",
+    # "TestFNR",
+    # "TestFPR",
+    # "TestLogLoss",
+    # "TestPrecisionByClass",
+    # "TestPrecisionScore",
+    # "TestRecallByClass",
+    # "TestRecallScore",
+    # "TestRocAuc",
+    # "TestTNR",
+    # "TestTPR",
     "TestAllFeaturesValueDrift",
     "TestCategoryCount",
     "TestCategoryShare",
@@ -167,26 +167,26 @@ __all__ = [
     "TestUniqueValuesShare",
     "TestValueList",
     "TestValueRange",
-    "TestValueAbsMaxError",
-    "TestValueMAE",
-    "TestValueMAPE",
-    "TestValueMeanError",
-    "TestValueR2Score",
-    "TestValueRMSE",
-    "TestFBetaTopK",
-    "TestHitRateK",
-    "TestMAPK",
-    "TestMRRK",
-    "TestMARK",
-    "TestNDCGK",
-    "TestPrecisionTopK",
-    "TestRecallTopK",
-    "TestNovelty",
-    "TestPersonalization",
-    "TestSerendipity",
-    "TestDiversity",
-    "TestARP",
-    "TestGiniIndex",
-    "TestCoverage",
-    "TestScoreEntropy",
+    # "TestValueAbsMaxError",
+    # "TestValueMAE",
+    # "TestValueMAPE",
+    # "TestValueMeanError",
+    # "TestValueR2Score",
+    # "TestValueRMSE",
+    # "TestFBetaTopK",
+    # "TestHitRateK",
+    # "TestMAPK",
+    # "TestMRRK",
+    # "TestMARK",
+    # "TestNDCGK",
+    # "TestPrecisionTopK",
+    # "TestRecallTopK",
+    # "TestNovelty",
+    # "TestPersonalization",
+    # "TestSerendipity",
+    # "TestDiversity",
+    # "TestARP",
+    # "TestGiniIndex",
+    # "TestCoverage",
+    # "TestScoreEntropy",
 ]

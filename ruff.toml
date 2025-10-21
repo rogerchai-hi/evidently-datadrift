@@ -28,6 +28,9 @@ extend-ignore = [
     # temporary
     "PLW3301", # Nested `max` calls can be flattened
     "PLW2901", # `for` loop variable `item` overwritten by assignment target
+
+    # Roger
+    "PLC0415", # `import` should be at the top-level of a fileRuffPLC0415
 ]
 
 [lint.isort]

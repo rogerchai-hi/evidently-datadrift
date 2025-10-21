@@ -7,6 +7,7 @@ from typing import List
 from typing import Optional
 from typing import Sequence
 from typing import Tuple
+from typing import TypeAlias
 from typing import Union
 
 from evidently.core.metric_types import Metric
@@ -19,7 +20,7 @@ from evidently.pydantic_utils import EvidentlyBaseModel
 if TYPE_CHECKING:
     from evidently.core.report import Context
 
-MetricOrContainer = Union[Metric, "MetricContainer"]
+MetricOrContainer: TypeAlias = Union[Metric, "MetricContainer"]
 
 
 class MetricContainer(AutoAliasMixin, EvidentlyBaseModel, abc.ABC):
