@@ -1,12 +1,10 @@
 <h1 align="center">Evidently (Data Drift Only)</h1>
 
 
-> ⚠️ This is a stripped-down fork of [Evidently](https://github.com/evidentlyai/evidently),
+> ⚠️ This is a lightweight fork of [Evidently](https://github.com/evidentlyai/evidently),
 > keeping only the **Data Drift** functionality,
-> All other UI and dashboard components were removed to simplify dependencies.
->
-> ⚠️ This repository is maintained for internal integration purposes,
-> and is **not affiliated with or endorsed by the original Evidently project.**.
+> all other UI and dashboard components were removed to simplify dependencies.
+> Maintained for personal integration purpose.
 >
 > Original project: [Evidently AI](https://github.com/evidentlyai/evidently) — Apache 2.0 License.
 
@@ -84,10 +82,8 @@ Here are examples of things you can check:
 |:-------------------------:|
 | **📊 Data distribution drift** |
 | 20+ statistical tests and distance metrics to compare shifts in data distribution.
-|
 | **🛢 Data quality**        |
 | Missing values, duplicates, min-max ranges, new categorical values, correlations, etc.
-|
 | **🔡 Text descriptors**   |
 | Length, sentiment, sentence count, OOV words percentage, non-letter character percentage.
 
