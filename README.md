@@ -1,17 +1,17 @@
 <h1 align="center">Evidently (Data Drift Only)</h1>
 
 
-> ⚠️ This is a lightweight fork of [Evidently](https://github.com/evidentlyai/evidently),
+> ⚠️ This is a lightweight fork of `evidently`,
 > keeping only the **Data Drift** functionality,
 > all other UI and dashboard components were removed to simplify dependencies.
 > Maintained for personal integration purpose.
 >
-> Original project: [Evidently AI](https://github.com/evidentlyai/evidently) — Apache 2.0 License.
+> Original project: **[Evidently](https://github.com/evidentlyai/evidently)** — Apache 2.0 License.
 
 
 
 ## Overview
-A stripped-down fork of [Evidently](https://github.com/evidentlyai/evidently), keeping only the Data Drift functionality.
+A lightweight fork of `evidently`, keeping only the Data Drift functionality.
 
 
 ## License
@@ -22,7 +22,17 @@ Licensed under the [Apache 2.0 License](./LICENSE) from the original project.
 
 # 👩‍💻 Install
 
-WIP
+You can only **install it directly from the GitHub repository**:<br>
+>⚠️ Please **do not install it together with the original `evidently` package**, as both provide overlapping modules and may cause import conflicts.
+
+Using pip:
+```bash
+pip install https://github.com/rogerchai-hi/evidently-datadrift.git
+```
+or with Poetry:
+```bash
+poetry add https://github.com/rogerchai-hi/evidently-datadrift.git
+```
 
 # ▶️  Getting started
 

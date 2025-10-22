@@ -1,7 +1,7 @@
 [project]
 name = "evidently"
-version = "0.7.15+datadrift.1"
-description = "A stripped-down fork of Evidently, keeping only the data drift functionality."
+version = "0.7.15+datadrift.2"
+description = "A lightweight fork of Evidently, keeping only the data drift functionality."
 authors = [
     {name = "Emeli Dral", email = "emeli.dral@gmail.com"},
 ]
